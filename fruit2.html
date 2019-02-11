@@ -60,9 +60,15 @@ for (var s=0; s < stateGrouping.length; s++) {
       var stateInfo=stateGrouping[s];
       var state_name=Object.values(stateInfo)[0];
       stateMap[state_name]=[];
-      //field={state: stateInfo.year}
-      console.log((Object.values(stateInfo)[1][2]['year']));
-       }
+
+
+
+
+      stateMap[state_name].push(Object.values(stateInfo))
+
+  };
+
+  console.log(stateMap['Arizona'][0][1]['year'])
 
   console.log(stateGrouping.length);
 
