@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<style>
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+#main {
+  width: 960px;
+}
+.axis .domain {
+  display: none;
+}
+</style>
+<div id="main">
+<svg width="960" height="500"></svg>
+</div>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+// create the svg it's like the canvas
+//http://bl.ocks.org/williaster/10ef968ccfdc71c30ef8
+var svg = d3.select("svg"),
+    margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom,
+    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// set x scale
+var x = d3.scaleBand()
+    .rangeRound([0, width])
+    .paddingInner(0.05)
+    .align(0.1);
+
+// set y scale
+var y = d3.scaleLinear()
+    .rangeRound([height, 0]);
+
+// set the colors
+var z = d3.scaleOrdinal()
+    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+// load the csv and create the chart
+d3.csv("summary_data/type_counts.csv", function(csv) {
+  data_selection=[];
+
+  for (var i=0; i < csv.length; i++)  {
+       var record=csv[i];
+
+       record.Heroin = +record.Heroin,
+       record.Methadone = +record.Methadone,
+       record.Natural = +record.Natural,
+       record.Synthetic = +record.Synthetic,
+       data_selection.push(record);
+     };
+
+ stateGrouping = d3.nest()
+     .key(function(d) { return d.State; })
+     .entries(data_selection)
+var stateMap={};
+for (var s=0; s < stateGrouping.length; s++) {
+      var stateInfo=stateGrouping[s];
+      var state_name=Object.values(stateInfo)[0];
+      stateMap[state_name]=[];
+      //field={state: stateInfo.year}
+      console.log((Object.values(stateInfo)[1][2]['year']));
+       }
+
+  console.log(stateGrouping.length);
+
+
+});
+
+
+</script>
