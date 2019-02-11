@@ -17,7 +17,7 @@ var angleRange=350,
     d_chords=[],
     u_labels=[],
     u_chords=[],
-    topStateCount=25,
+    topStateCount=1*25,
     d_buf_indexByName={},
     d_indexByName = {},
     d_nameByIndex = {},
@@ -32,7 +32,7 @@ var angleRange=350,
     yearlyUnemp=[],
     years=[],
     statesGrouped,
-    delay=1200,
+    delay=2500,
     refreshIntervalId,
     year= -1,
     //month=-1,
@@ -49,8 +49,8 @@ var header = d3.select(document.getElementById("head"));
 var header1 = d3.select(document.getElementById("header1"));
 var header2 = d3.select(document.getElementById("header2"));
 
-var d_fill= d3.scaleOrdinal().range(["#00AC6B","#20815D","#007046","#35D699","#60D6A9"]);
-var u_fill= d3.scaleOrdinal().range(["#EF002A","#B32D45","#9B001C","#F73E5F","#F76F87"]);
+var d_fill= d3.scaleOrdinal().range(["#006AC1","#1C77C3","#39A9DB","#40BCD8","#3E92CC"]); //006AC1 darkest
+var u_fill= d3.scaleOrdinal().range(["#BC3029","#D82700","#FC4B00","#FF4238","#FF7032"]);//BC3029
 
 var yearsMap=["2007","2008","2009","2010","2011","2012", "2013", "2014", "2015", "2016", "2017"];
 
@@ -99,9 +99,14 @@ gGroup.append("text")
 
 gGroup.append("text")
     .attr("class","secondLabel")
-    .attr("transform", "translate(" + (outerRadius - 50) + ","  + (outerRadius * 1.15) +")") //90
-    .text("*  U.S. opioid deaths per 100,000")
+    .attr("transform", "translate(" + (outerRadius - 60) + ","  + (outerRadius * 1.15) +")") //90
+    .text("U.S. opioid deaths per 100,000")
     .style("font-size","10px");
+gGroup.append("text")
+      .attr("class","thirdLabel")
+      .attr("transform", "translate(" + (outerRadius - 30) + ","  + (outerRadius * 1.18) +")")
+      .text("(age adjusted)")
+      .style("font-size","10px");
 
 var gY=(outerRadius-(innerRadius *.8/2));
 

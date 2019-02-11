@@ -33,8 +33,8 @@ function update(y) {
         .transition()
         .delay(delay)
         .text(td)
-        .attr("transform", "translate(" + (outerRadius - (2* fs/2)) + ","  + (outerRadius*1.1) +")")
-        .style("font-size", fs+"px");
+        .attr("transform", "translate(" + (outerRadius - (1.6* fs/2)) + ","  + (outerRadius*1.28) +")")
+        .style("font-size", fs*0.9+"px");
 
     dText.enter()
         .append("text")
@@ -101,7 +101,7 @@ function update(y) {
         .duration(delay/2)
         .attr("stroke-opacity", 1e-6)
         .attr("fill-opacity", 1e-6)
-        .attr("transform", "scale(0.01)")
+        .attr("transform", "scale(0.01)") //0.01
         .remove();
 
     uText.enter()
@@ -242,14 +242,12 @@ function updateYears(y) {
     yearEnter.append("text")
         .attr("transform",function (d,i) { return "translate (" + String(i*yearOffset-10) + ",33)"; })
         .text(function(d,i) {
-            if (i==0)  {
-                return String(baseYear + Math.floor(i/1));
-            }
-            else
-                return "";
+
+                return String(baseYear + Math.floor(i/1)); // this puts the timeline year for clicking
+
         })
         .on("click",function (d) {
-            year= Math.floor(d.index/1);
+            year= Math.floor(d.index/1); //was 1
             //month=0;
             if (running==true) stopStart();
             update(year);
@@ -259,7 +257,7 @@ function updateYears(y) {
     yearUpdate=yearAxis.transition();
 
     yearUpdate.select("text")
-        .delay(delay/2)
+        .delay(delay/1.2)
         .style("fill-opacity",function (d) {
             if (d.index==(y)) {
                 return 1;
@@ -269,7 +267,7 @@ function updateYears(y) {
         });
 
     yearUpdate.select("line")
-        .delay(delay/2)
+        .delay(delay/1.2)
         .attr("y1",function (d,i) {
             var ratio=(y)-i;
             if (ratio < 0) ratio=ratio*-1;

@@ -22,11 +22,15 @@ function stopStart() {
 function node_onMouseOver(d) {
     var t;
     if (typeof d.unemployment_rates == "undefined") {
-        t="Death rate: " + Number(d.deathrates) + " per 100,000 population";
+       t="Death rate: " + Number(d.deathrates) + " per 100,000 population";
+       //t= null;
+
     }
     else {
         t="Unemployment rate: " + formatPercent(Number(d.unemployment_rates));
-    }
+
+}
+
     toolTip.transition()
         .duration(250)
         .style("opacity", ".7");
@@ -35,6 +39,8 @@ function node_onMouseOver(d) {
     header2.text(t);
     toolTip.style("left", (d3.event.pageX+15) + "px")
         .style("top", (d3.event.pageY-75) + "px");
+
+
 }
 
 function node_onMouseOut(d) {
@@ -47,7 +53,7 @@ function node_onMouseOut(d) {
 /** Returns an event handler for fading a given chord group. */
 function fade(opacity) {
 
-    return;
+    //return; //this caused warning
     return function(g, i) {
         svg.selectAll("path.chord")
             .filter(function(d) {

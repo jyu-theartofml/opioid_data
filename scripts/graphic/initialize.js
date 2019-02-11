@@ -6,8 +6,8 @@ function initialize() {
         var o={};
         o.index=i;
         //o.month=monthsMap[i % 12];
-        //o.year=yearsMap[i % 10];
-        o.year=baseYear + Math.floor(i/1); // one year increment
+
+        o.year=baseYear + Math.floor(i/11); // was 1 one year increment
         // months.push(o);
         years.push(o);
     }
@@ -15,14 +15,14 @@ function initialize() {
     for (var i=0; i < topStateCount; i++) {
         var l={};
         l.index=i;
-        l.label="null";
+        //l.label="null";
         l.angle=0;
         //e_labels.push(l);
         d_labels.push(l);
 
 
         var c={}
-        c.label="null";
+        //c.label="null";
         c.source={};
         c.target={};
         //e_chords.push(c);
@@ -44,10 +44,10 @@ function initialize() {
     }
 
     createVerticalGradient('svg','gradient1',[
-        {offset:'0%', 'stop-color':'#00AC6B'},
+        {offset:'0%', 'stop-color':'#006AC1'},
         {offset: '40%', 'stop-color':'#FFFFFF', 'stop-opacity':'0' },
         {offset: '60%', 'stop-color':'#FFFFFF', 'stop-opacity':'0' },
-        {offset:'100%','stop-color':'#9B001C'}]);
+        {offset:'100%','stop-color':'#BC3029'}]);
 
 
     gradientGroup.transition()
